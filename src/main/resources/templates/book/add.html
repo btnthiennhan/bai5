@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm sách</title>
+    <th:block th:replace="layout::link-css"></th:block>
+</head>
+<body>
+    <th:block th:replace="layout::header"></th:block>
+    <div class="container">
+        <h1>Thêm mới sách</h1>
+        <form th:action="@{/add}" th:object="${book}" method="post" enctype="multipart/form-data">
+            <div class="col-6 mb-3">
+                <label class="form-label" for="id">Mã Sách:</label>
+                <input class="form-control" type="text" th:field="*{id}" id="id">
+                <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="name">Tên sản phẩm:</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="price">Giá:</label>
+                <input class="form-control" type="text" th:field="*{price}" id="price">
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="imageFile">Hình ảnh:</label>
+                <input class="form-control" type="file" id="imageFile" name="imageFile">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Thêm mới">
+        </form>
+        <br>
+        <a th:href="@{/}">Trở về</a>
+    </div>
+    <th:block th:replace="layout::footer"></th:block>
+</body>
+</html>
